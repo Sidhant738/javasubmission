@@ -3,10 +3,10 @@ import java.util.Scanner;
 
 public class StudentManagementApp {
 
-    // Database connection details
-    static final String URL = "jdbc:mysql://localhost:3306/studentdb";
-    static final String USER = "root";
-    static final String PASS = "your_password";
+    // ✅ H2 Database Connection (in-memory)
+    static final String URL = "jdbc:h2:mem:studentdb;DB_CLOSE_DELAY=-1";
+    static final String USER = "sa";
+    static final String PASS = "";
 
     // Establish connection
     public static Connection getConnection() throws SQLException {
@@ -95,14 +95,14 @@ public class StudentManagementApp {
     // Main menu
     public static void main(String[] args) {
         try {
-            // Load JDBC Driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            // ✅ Load H2 JDBC Driver
+            Class.forName("org.h2.Driver");
             createTable();
 
             Scanner sc = new Scanner(System.in);
             int choice;
 
-            System.out.println("🎓 Welcome to Student Management System (JDBC)");
+            System.out.println("🎓 Welcome to Student Management System (H2 Database)");
 
             while (true) {
                 System.out.println("\n1️⃣ Add Student");
@@ -149,3 +149,4 @@ public class StudentManagementApp {
         }
     }
 }
+
